@@ -14,19 +14,27 @@ class Validate
      * Validate constructor.
      * @param $_dataLayer
      */
-    public function __construct($_dataLayer)
+    public function __construct()
     {
         $this->_dataLayer = new DataLayer();
     }
 
-    /** validName() returns true if both first and last name are of string type
+    /** validfName() returns true if first name contains only alphabetic characters
      * @param $fName
+     * @return bool
+     */
+    function validfName($fName)
+    {
+        return ctype_alpha($fName) && isset($fName);
+    }
+
+    /** validlName() returns true if last name contains only alphabetic characters
      * @param $lName
      * @return bool
      */
-    function validName($fName, $lName)
+    function validlName($lName)
     {
-        return is_string($fName) && is_string($lName);
+        return ctype_alpha($lName) && isset($lName);;
     }
 
     /** validAge() returns true if age is greater than 18, and less than 118
