@@ -41,35 +41,35 @@ class Controller
                 $profile->setfName($fName);
             }
             else {
-                $this->_f3->set('errors["fName"])', "Invalid first name. Must contain only alphabetical characters and can't be empty.");
+                $this->_f3->set('errors["fName"]', "Invalid first name. Must contain only alphabetical characters and can't be empty.");
             }
 
             if ($validator->validlName($lName)) {
                 $profile->setlName($lName);
             }
             else {
-                $this->_f3->set('errors["lName"])', "Invalid last name. Must contain only alphabetical characters and can't be empty.");
+                $this->_f3->set('errors["lName"]', "Invalid last name. Must contain only alphabetical characters and can't be empty.");
             }
 
             if ($validator->validAge($age)) {
                 $profile->setAge($age);
             }
             else {
-                $this->_f3->set('errors["age"])', "Invalid age. Must be between 18 - 118.");
+                $this->_f3->set('errors["age"]', "Invalid age. Must be between 18 - 118.");
             }
 
             if ($validator->validPhone($number)) {
                 $profile->setPhone($number);
             }
             else {
-                $this->_f3->set('errors["number"])', "Invalid phone number. Must be 10-11 digits");
+                $this->_f3->set('errors["number"]', "Invalid phone number. Must be 10-11 digits");
             }
 
             if (isset($gender)) {
                 $profile->setGender($gender);
             }
             else {
-                $this->_f3->set('errors["genders"])', "Must choose a gender");
+                $this->_f3->set('errors["genders"]', "Must choose a gender");
             }
         }
 

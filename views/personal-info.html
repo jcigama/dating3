@@ -31,7 +31,8 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="fName"><strong>First name</strong></label>
-                        <input type="text" class="form-control" name="fName" id="fName" placeholder="Enter first name">
+                        <input type="text" class="form-control" name="fName" id="fName" placeholder="Enter first name" value="{{
+                        }}">
                         <div class="text-danger">
                             <check if="{{ isset(@errors['fName']) }}">
                                 {{ @errors['fName'] }}
@@ -43,12 +44,22 @@
                     <div class="form-group">
                         <label for="lName"><strong>Last name</strong></label>
                         <input type="text" class="form-control" name="lName" id="lName" placeholder="Enter last name">
+                        <div class="text-danger">
+                            <check if="{{ isset(@errors['lName']) }}">
+                                {{ @errors['lName'] }}
+                            </check>
+                        </div>
                         <br>
                     </div>
 
                     <div class="form-group">
                         <label for="age"><strong>Age</strong></label>
                         <input type="number" class="form-control" name="age" id="age" placeholder="Enter age">
+                        <div class="text-danger">
+                            <check if="{{ isset(@errors['age']) }}">
+                                {{ @errors['age'] }}
+                            </check>
+                        </div>
                         <br>
                     </div>
 
@@ -58,12 +69,22 @@
                         <label class="form-group" for="male">Male</label>
                         <input class="form-group" type="radio" name="genders" id="female" value="female">
                         <label class="form-group" for="female">Female</label>
+                        <div class="text-danger">
+                            <check if="{{ isset(@errors['genders']) }}">
+                                {{ @errors['genders'] }}
+                            </check>
+                        </div>
                         <br>
                     </div>
 
                     <div class="form-group">
                         <label for="number"><strong>Phone Number</strong></label>
                         <input type="number" class="form-control" name="number" id="number" placeholder="Enter phone number">
+                        <div class="text-danger">
+                            <check if="{{ isset(@errors['number']) }}">
+                                {{ @errors['number'] }}
+                            </check>
+                        </div>
                         <br>
                     </div>
                 </div>
