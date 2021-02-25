@@ -71,9 +71,27 @@ class Controller
             else {
                 $this->_f3->set('errors["genders"]', "Must choose a gender");
             }
+
+            //If there are no errors, redirect user to summary page
+            if (empty($this->_f3->get('errors'))) {
+                $this->_f3->reroute('/profile');
+            }
         }
+
+        //Sticky data
+        $this->_f3->set('fName', isset($fName) ? $fName : "");
+        $this->_f3->set('lName', isset($lName) ? $lName  : "");
+        $this->_f3->set('age', isset($age) ? $age : "");
+        $this->_f3->set('gender', isset($gender) ? $gender : "");
+        $this->_f3->set('number', isset($number) ? $number : "");
 
         $view = new Template();
         echo $view->render('views/personal-info.html');
+    }
+
+    function profile() {
+        //Display a view
+        $view = new Template();
+        echo $view->render('views/profile.html');
     }
 }
