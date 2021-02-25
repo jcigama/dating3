@@ -31,8 +31,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="fName"><strong>First name</strong></label>
-                        <input type="text" class="form-control" name="fName" id="fName" placeholder="Enter first name" value="{{
-                        }}">
+                        <input type="text" class="form-control" name="fName" id="fName" placeholder="Enter first name" value="{{ @fName }}">
                         <div class="text-danger">
                             <check if="{{ isset(@errors['fName']) }}">
                                 {{ @errors['fName'] }}
@@ -43,7 +42,7 @@
 
                     <div class="form-group">
                         <label for="lName"><strong>Last name</strong></label>
-                        <input type="text" class="form-control" name="lName" id="lName" placeholder="Enter last name">
+                        <input type="text" class="form-control" name="lName" id="lName" placeholder="Enter last name" value="{{ @lName }}">
                         <div class="text-danger">
                             <check if="{{ isset(@errors['lName']) }}">
                                 {{ @errors['lName'] }}
@@ -54,7 +53,7 @@
 
                     <div class="form-group">
                         <label for="age"><strong>Age</strong></label>
-                        <input type="number" class="form-control" name="age" id="age" placeholder="Enter age">
+                        <input type="number" class="form-control" name="age" id="age" placeholder="Enter age" value="{{ @age }}">
                         <div class="text-danger">
                             <check if="{{ isset(@errors['age']) }}">
                                 {{ @errors['age'] }}
@@ -65,21 +64,42 @@
 
                     <div class="form-group">
                         <p><strong>Gender</strong></p>
-                        <input class="form-group" type="radio" name="genders" id="male" value="male">
-                        <label class="form-group" for="male">Male</label>
-                        <input class="form-group" type="radio" name="genders" id="female" value="female">
-                        <label class="form-group" for="female">Female</label>
+
+                        <check if="{{ @gender=='male' }}">
+                            <true>
+                                <input class="form-group" type="radio" name="genders" id="male" value="male" checked>
+                                <label class="form-group" for="male">Male</label>
+                            </true>
+                            <false>
+                                <input class="form-group" type="radio" name="genders" id="male" value="male">
+                                <label class="form-group" for="male">Male</label>
+                            </false>
+                        </check>
+
+
+                        <check if="{{ @gender=='female' }}">
+                            <true>
+                                <input class="form-group" type="radio" name="genders" id="female" value="female" checked>
+                                <label class="form-group" for="female">Female</label>
+                            </true>
+                            <false>
+                                <input class="form-group" type="radio" name="genders" id="female" value="female">
+                                <label class="form-group" for="female">Female</label>
+                            </false>
+                        </check>
+
                         <div class="text-danger">
                             <check if="{{ isset(@errors['genders']) }}">
                                 {{ @errors['genders'] }}
                             </check>
                         </div>
+
                         <br>
                     </div>
 
                     <div class="form-group">
                         <label for="number"><strong>Phone Number</strong></label>
-                        <input type="number" class="form-control" name="number" id="number" placeholder="Enter phone number">
+                        <input type="number" class="form-control" name="number" id="number" placeholder="Enter phone number" value="{{ @number }}">
                         <div class="text-danger">
                             <check if="{{ isset(@errors['number']) }}">
                                 {{ @errors['number'] }}
