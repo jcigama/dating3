@@ -1,6 +1,6 @@
 <!--
     Name: Joseph Igama
-    Date: 02/11/2021
+    Date: 02/25/2021
     Purpose: A registration system that will setup a dating classes with details provided by the user
 -->
 
@@ -26,23 +26,26 @@
             <div class="col">
                 <div class="card" style="width: 18rem;">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Name: {{ @SESSION.personal['fName'] }}</li>
-                        <li class="list-group-item">Gender: {{ @SESSION.personal['lName'] }}</li>
-                        <li class="list-group-item">Age: {{ @SESSION.personal['age'] }}</li>
-                        <li class="list-group-item">Phone: {{ @SESSION.personal['number'] }}</li>
-                        <li class="list-group-item">Email: {{ @SESSION.profile['email'] }}</li>
-                        <li class="list-group-item">State: {{ @SESSION.profile['state'] }}</li>
-                        <li class="list-group-item">Seeking: {{ @SESSION.profile['genderInterest'] }}</li>
-                        <li class="list-group-item">Interests: {{ @SESSION.interests }}</li>
+                        <li class="list-group-item">Name: {{ @SESSION.fName }}</li>
+                        <li class="list-group-item">Gender: {{ @SESSION.lName }}</li>
+                        <li class="list-group-item">Age: {{ @SESSION.age }}</li>
+                        <li class="list-group-item">Phone: {{ @SESSION.number }}</li>
+                        <li class="list-group-item">Email: {{ @SESSION.email }}</li>
+                        <li class="list-group-item">State: {{ @SESSION.state }}</li>
+                        <li class="list-group-item">Seeking: {{ @SESSION.genderInterest }}</li>
+                        <li class="list-group-item">
+                            Interests: {{ @SESSION.indoorInterests }}, {{ @SESSION.outdoorInterests}}
+                        </li>
                     </ul>
                 </div>
             </div>
 
             <!--Biography-->
             <div class="col text-center">
+                <p>Lorem ipsum image</p>
                 <img src="images/Aphrodite.png">
                 <h3>Biography</h3>
-                <p>{{ @SESSION.profile['biography'] }}</p>
+                <p>{{ @SESSION.biography }}</p>
             </div>
         </div>
         <br>

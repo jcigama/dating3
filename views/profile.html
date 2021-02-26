@@ -1,6 +1,6 @@
 <!--
     Name: Joseph Igama
-    Date: 02/11/2021
+    Date: 02/25/2021
     Purpose: A registration system that will setup a dating classes with details provided by the user
 -->
 
@@ -34,6 +34,7 @@
                         <label for="email"><strong>Email</strong></label>
                         <input type="text" class="form-control" name="email" id="email" placeholder="Email" value="{{ @email }}">
                         <div class="text-danger">
+                            <!-- Inline error message -->
                             <check if="{{ isset(@errors['email']) }}">
                                 {{ @errors['email'] }}
                             </check>
@@ -44,21 +45,21 @@
                         <label for="state"><strong>State</strong></label>
                         <select class="form-control" name="state" id="state">
 
-
-
-
+                            <!-- Displays on initial visit -->
                             <check if="{{ @state==NULL }}">
                                 <option value="N/A">Select a State</option>
                                 <option>Olympus</option>
                                 <option>Underworld</option>
                             </check>
 
+                            <!-- Displays if no option is selected -->
                             <check if="{{ @state=='N/A' }}">
                                 <option value="N/A">Select a State</option>
                                 <option>Olympus</option>
                                 <option>Underworld</option>
                             </check>
 
+                            <!-- Displays if Olympus is selected -->
                             <check if="{{ @state=='Olympus' }}">
                                 <true>
                                     <option value="N/A">Select a State</option>
@@ -67,6 +68,7 @@
                                 </true>
                             </check>
 
+                            <!-- Displays if Underworld is selected -->
                             <check if="{{ @state=='Underworld' }}">
                                 <option value="N/A">Select a State</option>
                                 <option>Olympus</option>

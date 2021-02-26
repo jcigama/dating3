@@ -1,7 +1,8 @@
 <?php
-
 /**
- * Class Validate
+ * Validates different pieces of data through built-in PHP functions, as well as through logic.
+ *
+ * @author Joseph Igama
  */
 class Validate
 {
@@ -12,7 +13,6 @@ class Validate
 
     /**
      * Validate constructor.
-     * @param $_dataLayer
      */
     public function __construct()
     {
@@ -41,7 +41,7 @@ class Validate
      * @param $age
      * @return bool
      */
-    function validAge($age)
+    function validAge($age): bool
     {
         return $age > 18 && $age < 118;
     }
@@ -54,8 +54,7 @@ class Validate
     {
         if ($number >= 1000000000 && $number <= 99999999999) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -67,7 +66,7 @@ class Validate
 
     /** validOutdoor() returns true if all of the selected outdoor-activities are
      * in the list
-     * @param Array $outdoorActivity
+     * @param $outdoorActivities
      * @return bool
      */
     function validOutdoor($outdoorActivities): bool
@@ -84,7 +83,7 @@ class Validate
 
     /** validOutdoor() returns true if all of the selected indoor-activities are
      * in the list
-     * @param Array $indoorActivity
+     * @param $indoorActivities
      * @return bool
      */
     function validIndoor($indoorActivities): bool
@@ -98,6 +97,4 @@ class Validate
         }
         return true;
     }
-
-
 }

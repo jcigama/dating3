@@ -1,6 +1,6 @@
 <!--
     Name: Joseph Igama
-    Date: 02/11/2021
+    Date: 02/25/2021
     Purpose: A registration system that will setup a dating classes with details provided by the user
 -->
 
@@ -40,16 +40,19 @@
                             <label class="form-check-label" for="puzzles">puzzles</label>
                         </div>
 
+                        <!-- Inline error message -->
                         <div class="text-danger">
                             <check if="{{ isset(@errors['indoorInterests']) }}">
                                 <span>{{ @errors['indoorInterests'] }}</span>
                             </check>
                         </div>
 
+                        <!-- Break to preserve spacing -->
                         <check if="{{ @errors==NULL }}">
                             <br>
                         </check>
 
+                        <!-- Break to preserve spacing -->
                         <check if="{{ isset(@errors['outdoorInterests']) }}">
                             <br>
                         </check>
@@ -64,6 +67,7 @@
                             <label class="form-check-label" for="walking">walking</label>
                         </div>
 
+                        <!-- Inline error message -->
                         <div class="text-danger">
                             <check if="{{ isset(@errors['outdoorInterests']) }}">
                                 <span>{{ @errors['outdoorInterests'] }}</span>
@@ -104,7 +108,7 @@
                             <label class="form-check-label" for="cooking">cooking</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="indoorInterests[]" id="cards" value="cards">
+                            <input class="form-check-input" type="checkbox" name="indoorInterests[]" id="cards" value="playing cards">
                             <label class="form-check-label" for="cards">playing cards</label>
                         </div>
 
@@ -120,11 +124,11 @@
                     <div class="col">
                         <p><br></p>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="indoorInterests[]" id="boardgames" value="boardgames">
+                            <input class="form-check-input" type="checkbox" name="indoorInterests[]" id="boardgames" value="board games">
                             <label class="form-check-label" for="boardgames">board games</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="indoorInterests[]" id="videogames" value="videogames">
+                            <input class="form-check-input" type="checkbox" name="indoorInterests[]" id="videogames" value="video games">
                             <label class="form-check-label" for="videogames">video games</label>
                         </div>
 

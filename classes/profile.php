@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Stores and returns dating profile data submitted by user
+ *
+ * Data is stored via set methods. Data is returned via get methods.
+ *
+ * @author Joseph Igama
+ */
 class Profile
 {
     private $_fName;
@@ -189,7 +195,4 @@ class Profile
     {
         $this->_outdoorInterests = $outdoorInterests;
     }
-
-
 }
-

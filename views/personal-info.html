@@ -1,6 +1,6 @@
 <!--
     Name: Joseph Igama
-    Date: 02/11/2021
+    Date: 02/25/2021
     Purpose: A registration system that will setup a dating classes with details provided by the user
 -->
 
@@ -33,6 +33,8 @@
                         <label for="fName"><strong>First name</strong></label>
                         <input type="text" class="form-control" name="fName" id="fName" placeholder="Enter first name" value="{{ @fName }}">
                         <div class="text-danger">
+
+                            <!-- Inline error message -->
                             <check if="{{ isset(@errors['fName']) }}">
                                 {{ @errors['fName'] }}
                             </check>
@@ -44,6 +46,8 @@
                         <label for="lName"><strong>Last name</strong></label>
                         <input type="text" class="form-control" name="lName" id="lName" placeholder="Enter last name" value="{{ @lName }}">
                         <div class="text-danger">
+
+                            <!-- Inline error message -->
                             <check if="{{ isset(@errors['lName']) }}">
                                 {{ @errors['lName'] }}
                             </check>
@@ -55,6 +59,8 @@
                         <label for="age"><strong>Age</strong></label>
                         <input type="number" class="form-control" name="age" id="age" placeholder="Enter age" value="{{ @age }}">
                         <div class="text-danger">
+
+                            <!-- Inline error message -->
                             <check if="{{ isset(@errors['age']) }}">
                                 {{ @errors['age'] }}
                             </check>
@@ -89,6 +95,8 @@
                         </check>
 
                         <div class="text-danger">
+
+                            <!-- Inline error message -->
                             <check if="{{ isset(@errors['genders']) }}">
                                 {{ @errors['genders'] }}
                             </check>
@@ -101,6 +109,8 @@
                         <label for="number"><strong>Phone Number</strong></label>
                         <input type="number" class="form-control" name="number" id="number" placeholder="Enter phone number" value="{{ @number }}">
                         <div class="text-danger">
+
+                            <!-- Inline error message -->
                             <check if="{{ isset(@errors['number']) }}">
                                 {{ @errors['number'] }}
                             </check>
@@ -121,8 +131,5 @@
             </div>
         </form>
     </div>
-
-
-
 </body>
 </html>

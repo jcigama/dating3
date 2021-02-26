@@ -10,57 +10,45 @@ session_start();
 //Require the autoload file
 require_once('vendor/autoload.php');
 
-//Create an instance of the Base class
+//Class Instances
 $f3 = Base::instance();
+$validator = new Validate();
+$dataLayer = new DataLayer();
+$profile = new Profile();
+$controller = new Controller($f3);
+
+//Error Reporting
 $f3->set('DEBUG', 3);
 
 //Home Page
 $f3->route('GET /', function() {
-    $view = new Template();
-    echo $view->render('views/home.html');
+    global $controller;
+    $controller->home();
 });
 
 //Personal Info Page
-$f3->route('GET /personal', function() {
-    $view = new Template();
-    echo $view->render('views/personal-info.html');
+$f3->route('GET|POST /personal', function($f3) {
+    global $controller;
+    $controller->personal();
 });
 
 //Profile Page
-$f3->route('POST /profile', function() {
-
-    $_SESSION['personal'] = $_POST;
-
-    $view = new Template();
-    echo $view->render('views/profile.html');
+$f3->route('GET|POST /profileInfo', function($f3) {
+    global $controller;
+    $controller->profile();
 });
 
 //Interests Page
-$f3->route('POST /interests', function() {
-
-    $_SESSION['profile'] = $_POST;
-
-    $view = new Template();
-    echo $view->render('views/interests.html');
+$f3->route('GET|POST /interests', function() {
+    global $controller;
+    $controller->interests();
 });
 
-//Summary Page
-$f3->route('POST /summary', function() {
-    $_SESSION['interests'] = $_POST;
-    if (isset($_POST) && count($_POST) > 0) {
-
-        $_SESSION['interests'] =  implode(", ", $_SESSION['interests']['interests']);
-    }
-    else {
-        $_SESSION['interests'] =  "none";
-    }
-
-//    var_dump($_SESSION['interests']);
-
-    $view = new Template();
-    echo $view->render('views/summary.html');
+////Summary Page
+$f3->route('GET|POST /summary', function() {
+    global $controller;
+    $controller->summary();
 });
-
 
 //Run fat free
 $f3->run();

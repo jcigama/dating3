@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Handles data sent from user submitted pages and redirects them after confirming data is valid.
+ *
+ * @author Joseph Igama
+ */
 class Controller
 {
     private $_f3;
@@ -12,62 +16,63 @@ class Controller
     /** Display home page */
     function home()
     {
-        //Display a view
+        //Resets any stored session data
+        session_destroy();
+
+        //Renders view
         $view = new Template();
         echo $view->render('views/home.html');
     }
 
+    /** Display personal-info page */
     function personal()
     {
         global $validator;
         global $profile;
 
+        //If user submits data
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            var_dump($_POST);
+
+            //Assign post array to variables
             $fName = trim($_POST['fName']);
             $lName = trim($_POST['lName']);
             $age = trim($_POST['age']);
             $gender = $_POST['genders'];
             $number = trim($_POST['number']);
 
-            echo $fName;
-            echo $lName ;
-            echo $age;
-            echo $gender;
-            echo $number;
-
+            //Validation
             if ($validator->validfName($fName)) {
                 $profile->setfName($fName);
-            }
-            else {
+                $_SESSION['fName'] = $fName;
+            } else {
                 $this->_f3->set('errors["fName"]', "Invalid first name. Must contain only alphabetical characters and can't be empty.");
             }
 
             if ($validator->validlName($lName)) {
                 $profile->setlName($lName);
-            }
-            else {
+                $_SESSION['lName'] = $lName;
+            } else {
                 $this->_f3->set('errors["lName"]', "Invalid last name. Must contain only alphabetical characters and can't be empty.");
             }
 
             if ($validator->validAge($age)) {
                 $profile->setAge($age);
-            }
-            else {
+                $_SESSION['age'] = $age;
+            } else {
                 $this->_f3->set('errors["age"]', "Invalid age. Must be between 18 - 118.");
             }
 
             if ($validator->validPhone($number)) {
                 $profile->setPhone($number);
-            }
-            else {
+                $_SESSION['number'] = $number;
+            } else {
                 $this->_f3->set('errors["number"]', "Invalid phone number. Must be 10-11 digits");
             }
 
             if (isset($gender)) {
                 $profile->setGender($gender);
-            }
-            else {
+                $_SESSION['gender'] = $gender;
+            } else {
                 $this->_f3->set('errors["genders"]', "Must choose a gender");
             }
 
@@ -84,32 +89,42 @@ class Controller
         $this->_f3->set('gender', isset($gender) ? $gender : "");
         $this->_f3->set('number', isset($number) ? $number : "");
 
+        //Render view
         $view = new Template();
         echo $view->render('views/personal-info.html');
     }
 
-    function profile() {
+    /** Display profile info page */
+    function profile()
+    {
         global $validator;
         global $profile;
 
+        //If user submits data
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $email = trim($_POST['email']);
             $state = $_POST['state'];
             $genderInterest = $_POST['genderInterest'];
             $biography = $_POST['biography'];
 
-            //Email validation
+            //Validation
             if ($validator->validEmail($email)) {
                 $profile->setEmail($email);
-            }
-            else {
+                $_SESSION['email'] = $email;
+
+            } else {
                 $this->_f3->set('errors["email"]', "Invalid email. Please enter valid email.");
             }
 
             //Optional fields
             $profile->setGenderInterest($genderInterest);
+            $_SESSION['genderInterest'] = $genderInterest;
+
             $profile->setBiography($biography);
+            $_SESSION['biography'] = $biography;
+
             $profile->setState($state);
+            $_SESSION['state'] = $state;
 
             //If there are no errors, redirect user to interests
             if (empty($this->_f3->get('errors'))) {
@@ -128,31 +143,37 @@ class Controller
         echo $view->render('views/profile.html');
     }
 
-    function interests() {
+    /** Display interests page */
+    function interests()
+    {
         global $validator;
         global $profile;
 
+        //If user submits data
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            //If there are selected indoor interests
             if (isset($_POST['indoorInterests'])) {
                 $indoorInterests = $_POST['indoorInterests'];
 
                 if ($validator->validIndoor($indoorInterests)) {
                     $indoorString = implode(", ", $indoorInterests);
+                    $profile->setIndoorInterests($indoorInterests);
                     $_SESSION['indoorInterests'] = $indoorString;
-                }
-                else {
+                } else {
                     $this->_f3->set('errors["indoorInterests"]', "Spoof attempt prevented!");
                 }
             }
 
+            //If there are selected indoor interests
             if (isset($_POST['outdoorInterests'])) {
                 $outdoorInterests = $_POST['outdoorInterests'];
 
                 if ($validator->validOutdoor($outdoorInterests)) {
                     $outdoorString = implode(", ", $outdoorInterests);
+                    $profile->setOutdoorInterests($outdoorInterests);
                     $_SESSION['outdoorInterests'] = $outdoorString;
-                }
-                else {
+                } else {
                     $this->_f3->set('errors["outdoorInterests"]', "Spoof attempt prevented!");
                 }
             }
@@ -168,19 +189,9 @@ class Controller
         echo $view->render('views/interests.html');
     }
 
+    /** Display summary page */
     function summary()
     {
-//        $_SESSION['interests'] = $_POST;
-//        if (isset($_POST) && count($_POST) > 0) {
-//
-//            $_SESSION['interests'] =  implode(", ", $_SESSION['interests']['interests']);
-//        }
-//        else {
-//            $_SESSION['interests'] =  "none";
-//        }
-
-//    var_dump($_SESSION['interests']);
-
         $view = new Template();
         echo $view->render('views/summary.html');
     }
