@@ -2,13 +2,13 @@
 
 class DataLayer
 {
-    function getOutdoor()
+    function getIndoor()
     {
-        return array("tv", "movies", "cooking", "board games", "puzzles",
-            "reading", "playing cards", "video games");
+        return array("tv", "puzzles", "movies", "reading", "cooking",
+            "playing cards", "board games", "video games");
     }
 
-    function getIndoor()
+    function getOutdoor()
     {
         return array("hiking", "biking", "swimming", "collecting",
             "walking", "climbing");

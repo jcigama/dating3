@@ -22,7 +22,6 @@ class Controller
         global $validator;
         global $profile;
 
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             var_dump($_POST);
             $fName = trim($_POST['fName']);
@@ -72,9 +71,9 @@ class Controller
                 $this->_f3->set('errors["genders"]', "Must choose a gender");
             }
 
-            //If there are no errors, redirect user to summary page
+            //If there are no errors, redirect user to profile
             if (empty($this->_f3->get('errors'))) {
-                $this->_f3->reroute('/profile');
+                $this->_f3->reroute('/profileInfo');
             }
         }
 
@@ -90,8 +89,99 @@ class Controller
     }
 
     function profile() {
+        global $validator;
+        global $profile;
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $email = trim($_POST['email']);
+            $state = $_POST['state'];
+            $genderInterest = $_POST['genderInterest'];
+            $biography = $_POST['biography'];
+
+            //Email validation
+            if ($validator->validEmail($email)) {
+                $profile->setEmail($email);
+            }
+            else {
+                $this->_f3->set('errors["email"]', "Invalid email. Please enter valid email.");
+            }
+
+            //Optional fields
+            $profile->setGenderInterest($genderInterest);
+            $profile->setBiography($biography);
+            $profile->setState($state);
+
+            //If there are no errors, redirect user to interests
+            if (empty($this->_f3->get('errors'))) {
+                $this->_f3->reroute('/interests');
+            }
+        }
+
+        //Sticky data
+        $this->_f3->set('email', isset($email) ? $email : "");
+        $this->_f3->set('state', isset($state) ? $state : "");
+        $this->_f3->set('genderInterest', isset($genderInterest) ?  : "");
+        $this->_f3->set('biography', isset($biography) ? $biography : "");
+
         //Display a view
         $view = new Template();
         echo $view->render('views/profile.html');
+    }
+
+    function interests() {
+        global $validator;
+        global $profile;
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (isset($_POST['indoorInterests'])) {
+                $indoorInterests = $_POST['indoorInterests'];
+
+                if ($validator->validIndoor($indoorInterests)) {
+                    $indoorString = implode(", ", $indoorInterests);
+                    $_SESSION['indoorInterests'] = $indoorString;
+                }
+                else {
+                    $this->_f3->set('errors["indoorInterests"]', "Spoof attempt prevented!");
+                }
+            }
+
+            if (isset($_POST['outdoorInterests'])) {
+                $outdoorInterests = $_POST['outdoorInterests'];
+
+                if ($validator->validOutdoor($outdoorInterests)) {
+                    $outdoorString = implode(", ", $outdoorInterests);
+                    $_SESSION['outdoorInterests'] = $outdoorString;
+                }
+                else {
+                    $this->_f3->set('errors["outdoorInterests"]', "Spoof attempt prevented!");
+                }
+            }
+
+            //If there are no errors, redirect user to summary page
+            if (empty($this->_f3->get('errors'))) {
+                $this->_f3->reroute('/summary');
+            }
+        }
+
+        //Display a view
+        $view = new Template();
+        echo $view->render('views/interests.html');
+    }
+
+    function summary()
+    {
+//        $_SESSION['interests'] = $_POST;
+//        if (isset($_POST) && count($_POST) > 0) {
+//
+//            $_SESSION['interests'] =  implode(", ", $_SESSION['interests']['interests']);
+//        }
+//        else {
+//            $_SESSION['interests'] =  "none";
+//        }
+
+//    var_dump($_SESSION['interests']);
+
+        $view = new Template();
+        echo $view->render('views/summary.html');
     }
 }

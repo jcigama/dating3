@@ -6,6 +6,61 @@ class Profile
     private $_lName;
     private $_age;
     private $_gender;
+    private $_phone;
+    private $_email;
+    private $_state;
+    private $_genderInterest;
+    private $_biography;
+    private $_indoorInterests;
+    private $_outdoorInterests;
+
+    /**
+     * @return mixed
+     */
+    public function getFName()
+    {
+        return $this->_fName;
+    }
+
+    /**
+     * @param mixed $fName
+     */
+    public function setFName($fName): void
+    {
+        $this->_fName = $fName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLName()
+    {
+        return $this->_lName;
+    }
+
+    /**
+     * @param mixed $lName
+     */
+    public function setLName($lName): void
+    {
+        $this->_lName = $lName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAge()
+    {
+        return $this->_age;
+    }
+
+    /**
+     * @param mixed $age
+     */
+    public function setAge($age): void
+    {
+        $this->_age = $age;
+    }
 
     /**
      * @return mixed
@@ -22,34 +77,6 @@ class Profile
     {
         $this->_gender = $gender;
     }
-    private $_phone;
-    private $_email;
-    private $_outdoorActivites;
-    private $_indoorActivities;
-
-    /**
-     * @return mixed
-     */
-    public function getFName()
-    {
-        return $this->_fName;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLName()
-    {
-        return $this->_lName;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAge()
-    {
-        return $this->_age;
-    }
 
     /**
      * @return mixed
@@ -57,54 +84,6 @@ class Profile
     public function getPhone()
     {
         return $this->_phone;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEmail()
-    {
-        return $this->_email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getOutdoorActivites()
-    {
-        return $this->_outdoorActivites;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIndoorActivities()
-    {
-        return $this->_indoorActivities;
-    }
-
-    /**
-     * @param mixed $fName
-     */
-    public function setFName($fName): void
-    {
-        $this->_fName = $fName;
-    }
-
-    /**
-     * @param mixed $lName
-     */
-    public function setLName($lName): void
-    {
-        $this->_lName = $lName;
-    }
-
-    /**
-     * @param mixed $age
-     */
-    public function setAge($age): void
-    {
-        $this->_age = $age;
     }
 
     /**
@@ -116,6 +95,14 @@ class Profile
     }
 
     /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->_email;
+    }
+
+    /**
      * @param mixed $email
      */
     public function setEmail($email): void
@@ -124,19 +111,83 @@ class Profile
     }
 
     /**
-     * @param mixed $outdoorActivites
+     * @return mixed
      */
-    public function setOutdoorActivites($outdoorActivites): void
+    public function getState()
     {
-        $this->_outdoorActivites = $outdoorActivites;
+        return $this->_state;
     }
 
     /**
-     * @param mixed $indoorActivities
+     * @param mixed $state
      */
-    public function setIndoorActivities($indoorActivities): void
+    public function setState($state): void
     {
-        $this->_indoorActivities = $indoorActivities;
+        $this->_state = $state;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGenderInterest()
+    {
+        return $this->_genderInterest;
+    }
+
+    /**
+     * @param mixed $genderInterest
+     */
+    public function setGenderInterest($genderInterest): void
+    {
+        $this->_genderInterest = $genderInterest;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBiography()
+    {
+        return $this->_biography;
+    }
+
+    /**
+     * @param mixed $biography
+     */
+    public function setBiography($biography): void
+    {
+        $this->_biography = $biography;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIndoorInterests()
+    {
+        return $this->_indoorInterests;
+    }
+
+    /**
+     * @param mixed $indoorInterests
+     */
+    public function setIndoorInterests($indoorInterests): void
+    {
+        $this->_indoorInterests = $indoorInterests;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOutdoorInterests()
+    {
+        return $this->_outdoorInterests;
+    }
+
+    /**
+     * @param mixed $outdoorInterests
+     */
+    public function setOutdoorInterests($outdoorInterests): void
+    {
+        $this->_outdoorInterests = $outdoorInterests;
     }
 
 

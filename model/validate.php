@@ -60,15 +60,26 @@ class Validate
         }
     }
 
+    function validEmail($email): bool
+    {
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
+    }
+
     /** validOutdoor() returns true if all of the selected outdoor-activities are
      * in the list
      * @param Array $outdoorActivity
      * @return bool
      */
-    function validOutdoor($outdoorActivity): bool
+    function validOutdoor($outdoorActivities): bool
     {
         $validOutdoor = $this->_dataLayer->getOutdoor();
-        return in_array($outdoorActivity, $validOutdoor);
+
+        foreach ($outdoorActivities as $activity) {
+            if (!in_array($activity, $validOutdoor)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /** validOutdoor() returns true if all of the selected indoor-activities are
@@ -76,10 +87,16 @@ class Validate
      * @param Array $indoorActivity
      * @return bool
      */
-    function validIndoor($indoorActivity): bool
+    function validIndoor($indoorActivities): bool
     {
-        $validIndoor = $this->_dataLayer->getOutdoor();
-        return in_array($indoorActivity, $validIndoor);
+        $validIndoor = $this->_dataLayer->getIndoor();
+
+        foreach ($indoorActivities as $activity) {
+            if (!in_array($activity, $validIndoor)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 
